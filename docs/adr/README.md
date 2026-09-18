@@ -22,3 +22,5 @@ between approaches where the rejected option was genuinely defensible.
 | [0010](./0010-ai-review.md) | CodeRabbit now, Claude Code Action in Phase 2 | Accepted |
 | [0011](./0011-immutable-specs.md) | Specs are numbered and immutable | Accepted |
 | [0012](./0012-public-repository.md) | Public repository | Accepted |
+| [0013](./0013-biome.md) | Biome for linting and formatting | Accepted |
+| [0014](./0014-typescript-7.md) | TypeScript 7 | Accepted |
