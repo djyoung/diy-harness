@@ -17,7 +17,7 @@ development data, so the container comes up usable rather than merely running.
 
 ## Docker
 
-Three compositions, sharing one set of images:
+Two compositions and a Dockerfile per application, sharing one set of images:
 
 - `docker-compose.yml` — Postgres plus both applications in development mode with
   hot reload. What `bun dev` uses.
