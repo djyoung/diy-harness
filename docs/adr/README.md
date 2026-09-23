@@ -78,3 +78,4 @@ number. Gaps left by discarded ADRs are fine. A merged ADR is never renumbered.
 | [0012](./0012-public-repository.md) | Public repository | Accepted |
 | [0013](./0013-biome.md) | Biome for linting and formatting | Accepted |
 | [0014](./0014-typescript-7.md) | TypeScript 7 | Accepted |
+| [0016](./0016-devcontainer-only-development.md) | Development happens in the devcontainer | Proposed |
