@@ -15,6 +15,12 @@ harness: the spec is what tells an agent when it is done, without asking.
 Specs are immutable. If the requirement changed, a new numbered spec supersedes
 the old one; the old file stays exactly as it was written.
 
+The same precondition applies to decisions. If the slice depends on a choice that
+meets the ADR criteria, an accepted ADR must exist before code that depends on it
+is written. A foreseeable one is merged first in its own pull request. One found
+mid-slice stops the work and is proposed in the draft pull request. See
+[the ADR lifecycle](./adr/README.md#lifecycle).
+
 ## 1. Contract first — red by typecheck
 
 Add `MoveTodoRequest` to `packages/contracts`. Nothing implements it, so

@@ -8,6 +8,12 @@ Implements `docs/specs/NNNN-....md`.
 
 <!-- One paragraph. What changed, and why this approach. -->
 
+## Decisions
+
+<!-- Each decision made in this pull request that meets the ADR criteria: the
+     ADR, the alternatives it weighed, and a link to where a human approved it.
+     Write "none" only if that is true. -->
+
 ## Acceptance criteria
 
 <!-- Copy each AC from the spec and link the test that proves it. -->
@@ -34,7 +40,8 @@ Verified manually on the pull request environment: <!-- yes / no, and how -->
 - [ ] Migration applies to an empty **and** a production-like database
 - [ ] Migration is backward compatible with deployed code, or the risk is noted
 - [ ] No layering violation (see `ARCHITECTURE.md`)
-- [ ] No new dependency, or an ADR is included
+- [ ] No new dependency or significant decision, or an accepted ADR covers it
+- [ ] No ADR in this pull request is still `Proposed`
 - [ ] No spec was edited (supersede instead)
 - [ ] No gate weakened, no test skipped
 - [ ] Diff under ~400 lines, or explained below
