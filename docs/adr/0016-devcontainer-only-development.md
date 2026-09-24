@@ -38,13 +38,22 @@ how the end-to-end suite runs and how the applications deploy.
 dependencies are not written onto a macOS host's disk. Agents, including Claude
 Code, run inside the devcontainer too.
 
+There are two supported ways into the devcontainer: VS Code (Dev Containers), and
+the `devcontainer` command line interface (`devcontainer up` and
+`devcontainer exec`). Both must work end to end, including reaching the running
+applications from a browser on the host. `forwardPorts` is a VS Code feature that
+the command line interface ignores, so `devcontainer.json` also publishes the
+ports with `appPort`. Without it, `bun dev` succeeds inside the container while
+nothing is reachable from the host.
+
 ## Consequences
 
 One environment replaces two, so the mismatch between host and container
 dependencies goes away, along with the volume workarounds and two Dockerfile
 stages. Hot reload no longer passes through a bind mount. The same environment
 works in Codespaces and other cloud sandboxes, and a contributor needs Docker and
-an editor that supports devcontainers, and nothing else on the host.
+either VS Code or the `devcontainer` command line interface, and nothing else on
+the host.
 
 Development and production no longer share an operating system or C library:
 development runs on Debian, production on Alpine. A problem specific to one is
@@ -52,14 +61,16 @@ found by the end-to-end suite, which runs the production images, and not while
 developing.
 
 Postgres, Testcontainers and the end-to-end stack run inside Docker-in-Docker,
-which is heavier and needs a privileged container. Contributors need Docker and a
-devcontainer-capable editor, and the first build is slow. The Playwright UI
+which is heavier and needs a privileged container. Contributors need Docker and
+one of the two supported ways into the devcontainer, and the first build is slow.
+Supporting both means testing both, and the two mechanisms for ports overlap. The Playwright UI
 (`bun test:e2e --ui`) needs port forwarding or a display from inside the
 container. Anything an agent runs against the repository must run in the
 container, which changes how agent sessions are started.
 
 Implementing this means rewriting `docker-compose.yml`, removing the `dev` stages,
-adding the `node_modules` volume, and updating `docs/local-development.md`.
+adding the `node_modules` volume and `appPort`, and updating
+`docs/local-development.md` with both ways of entering the devcontainer.
 
 ### Open questions
 
@@ -71,6 +82,9 @@ These are for the reviewer to settle before this is accepted.
 - **CI toolchain.** Whether CI builds from the devcontainer image, so that both pin
   the same versions, or keeps its own setup.
 - **Playwright UI.** The exact way to reach it from the host.
+- **Ports in VS Code.** Whether declaring the same ports in both `forwardPorts` and
+  `appPort` causes duplicate forwards or conflict warnings in VS Code, and if so
+  which of the two should be kept. This has not been tested.
 
 ## Alternatives considered
 
