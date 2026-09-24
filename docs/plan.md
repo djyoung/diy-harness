@@ -16,13 +16,14 @@ before it. No feature work until the pipeline is green.
 2. **Docker and devcontainer.** Dockerfiles for both applications, the two
    compositions, `.devcontainer`. Exit: `docker compose up` serves a health
    endpoint.
-3. **Database and migrations.** Drizzle configured, the `todos` table, the first
-   migration, `db:migrate`, `db:reset`, `db:seed`. Exit: migrations apply to an
-   empty database and the seed runs.
-4. **Contracts and generation.** `packages/contracts` with the `Todo` schema,
+3. **Contracts and generation.** `packages/contracts` with the `Todo` schema,
    `@hono/zod-openapi` wiring, `bun gen` producing the OpenAPI document, the
    typed client, MSW handlers and faker factories. Exit: `bun gen` is
    idempotent and its output is committed.
+4. **Database and migrations.** Drizzle configured, the `todos` table, the first
+   migration, `db:migrate`, `db:reset`, `db:seed`. Comes after contracts because
+   the seed uses the factories from item 3. Exit: migrations apply to an empty
+   database and the seed runs.
 5. **Test harness.** Vitest projects, Testcontainers setup, RTL and MSW setup,
    Playwright, coverage thresholds. Exit: one trivial test at each level runs
    green.
