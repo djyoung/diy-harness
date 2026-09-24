@@ -1,4 +1,4 @@
-# 0019 — Contract layout and code generation tooling
+# 0016 — Contract layout and code generation tooling
 
 **Status:** Proposed · **Date:** 2026-09-23
 
