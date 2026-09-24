@@ -43,7 +43,7 @@ diff and is not an approval of the ADR.
 
 A pull request must not merge with an ADR still `Proposed`.
 
-### If a proposal is changed or turned down
+### If a proposal is changed, turned down or deferred
 
 - **Changes requested.** Edit the ADR in place while it is `Proposed`, push, and
   ask again.
@@ -53,12 +53,23 @@ A pull request must not merge with an ADR still `Proposed`.
 - **The idea is turned down with no replacement.** Discard the ADR and any code
   that depended on it. Merge it as `Rejected` only if a human asks, for example
   to stop the same idea being proposed again.
+- **The decision is deferred.** It is still needed, but not yet, for example
+  because the plan was reordered. Close the pull request unmerged, with a
+  comment saying it is deferred rather than rejected, why, and when it will be
+  revisited. The ADR gets no status and no index row, and no code may depend on
+  it. When the work resumes, propose it afresh with the next free number and
+  link the closed pull request. The earlier text is a starting point, not an
+  approval, because the context it was written in may have changed.
+
+A closed ADR pull request always carries a comment saying which of these
+outcomes applies. Without one, the next reader cannot tell a rejected idea from
+a postponed one.
 
 ### Numbering
 
 A new ADR takes the next free number. While an ADR is `Proposed` and unmerged it
 may be renumbered, for example when two open pull requests choose the same
-number. Gaps left by discarded ADRs are fine. A merged ADR is never renumbered.
+number. Gaps left by discarded or deferred ADRs are fine. A merged ADR is never renumbered.
 
 ## Index
 
