@@ -26,8 +26,9 @@ explained afterwards. How depends on when the decision is found.
 
 **Foreseeable decisions**, such as the tooling and dependency choices of a
 planned item, get an ADR-only pull request. It contains the ADR and its index
-row and nothing else, and it is merged before the implementation branch starts.
-Merging it is the approval, and the merged status is `Accepted`.
+row and nothing else. It is opened with the ADR `Proposed`, approved as
+described below, and merged with the ADR `Accepted` before the implementation
+branch starts.
 
 **Decisions discovered mid-work** stop the work. The agent commits a `Proposed`
 ADR and its index row to the draft pull request it is already working in, writes
@@ -36,10 +37,16 @@ go in the ADR itself.
 
 ### Approving a proposed ADR
 
-A human approves by saying so explicitly on the ADR, in a review comment or a
-reply. The agent then sets the status to `Accepted` in its own commit, which
-links to that comment, and continues. A pull request approval covers the whole
-diff and is not an approval of the ADR.
+A human approves an ADR by saying so explicitly, in either of two ways:
+
+- **On the pull request**, in a review comment or a reply.
+- **In conversation with the agent**, for example by saying that the ADR looks
+  good.
+
+The agent then sets the status to `Accepted` in its own commit and continues.
+The commit links the approving comment or, for an approval given in
+conversation, quotes it and says so. The approval must be about the ADR itself.
+A pull request approval covers the whole diff and is not an approval of the ADR.
 
 A pull request must not merge with an ADR still `Proposed`.
 
@@ -57,7 +64,7 @@ A pull request must not merge with an ADR still `Proposed`.
   because the plan was reordered. Close the pull request unmerged, with a
   comment saying it is deferred rather than rejected, why, and when it will be
   revisited. The ADR gets no status and no index row, and no code may depend on
-  it. When the work resumes, propose it afresh with the next free number and
+  it. When the work resumes, propose it afresh, numbered as below, and
   link the closed pull request. The earlier text is a starting point, not an
   approval, because the context it was written in may have changed.
 
@@ -67,9 +74,17 @@ a postponed one.
 
 ### Numbering
 
-A new ADR takes the next free number. While an ADR is `Proposed` and unmerged it
-may be renumbered, for example when two open pull requests choose the same
-number. Gaps left by discarded or deferred ADRs are fine. A merged ADR is never renumbered.
+ADR numbers are contiguous, with no gaps. The ADR that merges first takes the
+next number after the highest one on `main`.
+
+- **While writing**, number a new ADR as the next after the highest ADR merged
+  on `main`, even if an open pull request already uses that number.
+- **Before merging**, check `main` again. If another ADR has taken the number in
+  the meantime, renumber this one to the next free number: the file name, its
+  heading, its index row and any links to it.
+- **Closed proposals reserve nothing.** A discarded or deferred ADR never
+  merged, so its number goes to whichever ADR merges next.
+- **A merged ADR is never renumbered.**
 
 ## Index
 
