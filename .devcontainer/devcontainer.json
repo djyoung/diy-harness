@@ -5,8 +5,21 @@
     "ghcr.io/devcontainers/features/node:1": { "version": "24" },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
+  // forwardPorts is used by VS Code only; appPort publishes the same ports for
+  // the devcontainer command line interface (ADR 0016).
   "forwardPorts": [3000, 5173, 5432],
-  "postCreateCommand": "bun install --frozen-lockfile && docker compose up -d db",
+  "appPort": [3000, 5173, 5432],
+  // Linux dependencies live on named volumes, never on the host's disk. Bun's
+  // isolated linker gives every workspace its own node_modules, so each one
+  // needs a volume; add new workspaces here.
+  "mounts": [
+    "source=diy-harness-${devcontainerId}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "source=diy-harness-${devcontainerId}-api-node_modules,target=${containerWorkspaceFolder}/apps/api/node_modules,type=volume",
+    "source=diy-harness-${devcontainerId}-web-node_modules,target=${containerWorkspaceFolder}/apps/web/node_modules,type=volume",
+    "source=diy-harness-${devcontainerId}-config-node_modules,target=${containerWorkspaceFolder}/packages/config/node_modules,type=volume",
+    "source=diy-harness-${devcontainerId}-contracts-node_modules,target=${containerWorkspaceFolder}/packages/contracts/node_modules,type=volume"
+  ],
+  "postCreateCommand": ".devcontainer/post-create.sh",
   "customizations": {
     "vscode": {
       "extensions": ["biomejs.biome", "bradlc.vscode-tailwindcss"],

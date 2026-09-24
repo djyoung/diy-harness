@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Build context: the repository root (see docker-compose.yml).
+# Build context: the repository root (see docker-compose.test.yml).
 
 ARG BUN_VERSION=1.4.2
 
@@ -13,19 +13,6 @@ COPY apps/web/package.json apps/web/
 COPY packages/config/package.json packages/config/
 COPY packages/contracts/package.json packages/contracts/
 RUN bun install --frozen-lockfile
-
-# Development: source is bind-mounted by docker-compose.yml, and Vite serves it
-# with hot module replacement.
-FROM deps AS dev
-COPY packages packages
-COPY apps/web apps/web
-# Vite writes its dependency cache under node_modules, so the unprivileged user
-# must own that directory.
-RUN chown bun:bun /app/apps/web/node_modules
-WORKDIR /app/apps/web
-USER bun
-EXPOSE 5173
-CMD ["bun", "run", "dev"]
 
 # Build: the static production bundle.
 FROM deps AS build

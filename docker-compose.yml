@@ -1,6 +1,6 @@
-# Development: Postgres plus both applications with hot reload. `bun dev` runs
-# this, renewing the anonymous node_modules volumes so a dependency change is
-# picked up. Credentials are local-only defaults, never used outside this file.
+# Development: Postgres only. The applications run directly in the devcontainer
+# (ADR 0016), and `bun dev` starts this before them. Credentials are local-only
+# defaults, never used outside this file.
 name: diy-harness
 
 services:
@@ -19,37 +19,6 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
-
-  api:
-    build:
-      context: .
-      dockerfile: apps/api/Dockerfile
-      target: dev
-    environment:
-      PORT: "3000"
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./apps/api:/app/apps/api
-      # Keep the image's Linux node_modules rather than the host's.
-      - /app/apps/api/node_modules
-    depends_on:
-      db:
-        condition: service_healthy
-
-  web:
-    build:
-      context: .
-      dockerfile: apps/web/Dockerfile
-      target: dev
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./apps/web:/app/apps/web
-      # Keep the image's Linux node_modules rather than the host's.
-      - /app/apps/web/node_modules
-    depends_on:
-      - api
 
 volumes:
   db-data:
