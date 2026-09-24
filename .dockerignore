@@ -1,0 +1,15 @@
+# The build context is the repository root, so that images can install the
+# workspace from the root lockfile. Keep it small and free of host artefacts.
+**/node_modules
+**/dist
+**/.turbo
+.git
+.devcontainer
+.env
+.env.*
+!.env.example
+coverage
+test-results
+playwright-report
+docs
+*.md
