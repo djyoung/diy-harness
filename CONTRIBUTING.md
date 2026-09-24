@@ -5,19 +5,19 @@ covers only the mechanics.
 
 ## Getting set up
 
-The supported path is the devcontainer: open the repository in a devcontainer-
-aware editor and accept the prompt. You get Bun, Node, Docker-in-Docker, the
-Postgres service, Playwright browsers and the toolchain pinned to the versions CI
-uses.
+Development happens inside the devcontainer, and only there
+([ADR 0016](./docs/adr/0016-devcontainer-only-development.md)). On the host you
+need Docker and either VS Code with the Dev Containers extension or the
+`devcontainer` command line interface. The container gives you Bun, Node,
+Docker-in-Docker and Postgres, pinned. Developing directly on the host is not
+supported.
 
-Without a devcontainer you need Bun, Docker and a POSIX shell:
+[Local development](./docs/local-development.md) has the exact commands for
+both ways in. In short, from the command line:
 
 ```bash
-bun install
-cp .env.example .env
-docker compose up -d db
-bun db:migrate
-bun dev
+devcontainer up --workspace-folder .
+devcontainer exec --workspace-folder . bun dev
 ```
 
 `bun verify` runs the full local gate — the same checks CI runs, minus

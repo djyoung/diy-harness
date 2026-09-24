@@ -123,3 +123,4 @@ next number after the highest one on `main`.
 | [0013](./0013-biome.md) | Biome for linting and formatting | Accepted |
 | [0014](./0014-typescript-7.md) | TypeScript 7 | Accepted |
 | [0015](./0015-vite-and-nginx.md) | Vite for the web build, nginx to serve it | Accepted |
+| [0016](./0016-devcontainer-only-development.md) | Development happens in the devcontainer | Proposed |

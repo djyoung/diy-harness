@@ -1,6 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
     "typecheck": {
       "dependsOn": ["^typecheck"],
       "inputs": ["$TURBO_DEFAULT$", "../../packages/config/tsconfig.base.json"]

@@ -49,6 +49,11 @@ Nothing in `apps/web` may define its own idea of what a `Todo` is.
 
 ## 3. Commands
 
+Run every command inside the devcontainer; developing on the host is not
+supported ([ADR 0016](./docs/adr/0016-devcontainer-only-development.md)). From
+the host, prefix a command with `devcontainer exec --workspace-folder .`. See
+[docs/local-development.md](./docs/local-development.md).
+
 | Task | Command |
 |---|---|
 | Install | `bun install` |
