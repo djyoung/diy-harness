@@ -46,6 +46,12 @@ the command line interface ignores, so `devcontainer.json` also publishes the
 ports with `appPort`. Without it, `bun dev` succeeds inside the container while
 nothing is reachable from the host.
 
+[Local development](../local-development.md) describes both setups clearly, and
+gives the exact commands to run each: how to start the devcontainer, how to run
+the applications and the tests in it, how to reach them from the host, and how to
+stop and rebuild it. A contributor can follow either section without reading the
+other.
+
 ## Consequences
 
 One environment replaces two, so the mismatch between host and container
@@ -70,7 +76,7 @@ container, which changes how agent sessions are started.
 
 Implementing this means rewriting `docker-compose.yml`, removing the `dev` stages,
 adding the `node_modules` volume and `appPort`, and updating
-`docs/local-development.md` with both ways of entering the devcontainer.
+`docs/local-development.md` so that it documents both setups and how to run them.
 
 ### Open questions
 
