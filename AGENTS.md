@@ -156,10 +156,12 @@ Escalate to a human rather than guessing when:
 - The work turns out to need more than one spec, or the diff exceeds ~400 lines.
 - Anything touching secrets, deployment configuration or branch protection.
 - You reach a decision that meets the ADR criteria in
-  [docs/adr/](./docs/adr/README.md) and no accepted ADR covers it. Stop before
-  writing any code that depends on it. Commit a `Proposed` ADR with the
-  realistic options and a recommendation, and wait for a human to accept it.
-  Do not pick a default and explain it afterwards.
+  [docs/adr/](./docs/adr/README.md) and no accepted ADR covers it. Commit a
+  `Proposed` ADR with the realistic options and a recommendation, on its own and
+  before any code that depends on it, push it to the draft pull request and tell
+  the human. You may then implement the recommended option in the same pull
+  request so the human can see what it entails, but it must not merge until a
+  human accepts the ADR. Do not pick a default and explain it afterwards.
 
 Escalating correctly is a success, not a failure. It is one of the measured
 metrics in [docs/roadmap.md](./docs/roadmap.md).
@@ -182,7 +184,7 @@ metrics in [docs/roadmap.md](./docs/roadmap.md).
 
 ## 9. What not to do
 
-- Do not add a dependency without an accepted ADR. See
+- Do not merge a dependency without an accepted ADR. See
   [docs/adr/](./docs/adr/README.md).
 - Do not mark an ADR `Accepted` yourself without a human's explicit approval of
   that ADR. Approving the pull request as a whole does not count.
