@@ -40,7 +40,7 @@ Verified manually on the pull request environment: <!-- yes / no, and how -->
 - [ ] Migration applies to an empty **and** a production-like database
 - [ ] Migration is backward compatible with deployed code, or the risk is noted
 - [ ] No layering violation (see `ARCHITECTURE.md`)
-- [ ] No new dependency or significant decision, or an accepted ADR covers it
+- [ ] No new dependency or significant decision, or an accepted ADR covers it (this pull request's own ADR counts once `Accepted`)
 - [ ] No ADR in this pull request is still `Proposed`
 - [ ] No spec was edited (supersede instead)
 - [ ] No gate weakened, no test skipped

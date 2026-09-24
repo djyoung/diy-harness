@@ -13,7 +13,7 @@ before it. No feature work until the pipeline is green.
    tsconfig and Biome config in `packages/config`, `.gitignore`,
    `.env.example`. Exit: `bun install` and `bun typecheck` pass on empty
    packages.
-2. **Docker and devcontainer.** Dockerfiles for both applications, the three
+2. **Docker and devcontainer.** Dockerfiles for both applications, the two
    compositions, `.devcontainer`. Exit: `docker compose up` serves a health
    endpoint.
 3. **Database and migrations.** Drizzle configured, the `todos` table, the first
